@@ -13,8 +13,8 @@ RUN echo 'deb http://linux.dropbox.com/debian jessie main' > /etc/apt/sources.li
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 	# Create service account and set permissions.
 	&& groupadd dropbox \
-	&& useradd -m -d /dbox -c "Dropbox Daemon Account" -s /usr/sbin/nologin -g dropbox dropbox
-	&& echo fs.inotify.max_user_watches=100000 | sudo tee -a /etc/sysctl.conf
+	&& useradd -m -d /dbox -c "Dropbox Daemon Account" -s /usr/sbin/nologin -g dropbox dropbox \
+	&& echo fs.inotify.max_user_watches=100000 | sudo tee -a /etc/sysctl.conf \
 	&& sysctl -p
 
 # Dropbox is weird: it insists on downloading its binaries itself via 'dropbox
