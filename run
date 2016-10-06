@@ -64,6 +64,8 @@ if [[ -z "$DBOX_SKIP_UPDATE" ]]; then
 	fi
 fi
 
+sudo sysctl -w fs.inotify.max_user_watches=1048576
+
 echo "Starting dropboxd ($(cat /opt/dropbox/VERSION))..."
 umask 002
 exec su dropbox -s /bin/bash -c /opt/dropbox/dropboxd
